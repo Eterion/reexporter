@@ -1,0 +1,56 @@
+{
+  "name": "reexporter",
+  "version": "1.0.0",
+  "description": "Manage index files for ES6 modules and other exports.",
+  "keyword": [
+    "autogenerate",
+    "es6",
+    "esm",
+    "export",
+    "import",
+    "index",
+    "module"
+  ],
+  "bin": "bin.js",
+  "main": "index.js",
+  "typings": "index",
+  "repository": "https://github.com/Eterion/reexporter.git",
+  "author": "Eterion <Eterion@users.noreply.github.com>",
+  "license": "MIT",
+  "files": [
+    "bin.js",
+    "index.d.ts",
+    "index.js"
+  ],
+  "scripts": {
+    "build": "webpack --mode development",
+    "clean": "del-cli \"bin.js\" \"index.js\"",
+    "prepack": "yarn release",
+    "prettier": "prettier --write \"**/*.{ts,md}\"",
+    "release": "webpack --mode production",
+    "watch": "yarn build --watch"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "glob": "^7.1.2",
+    "path": "^0.12.7",
+    "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "@types/glob": "^5.0.35",
+    "@types/node": "^10.5.5",
+    "@types/webpack": "^4.4.9",
+    "@types/webpack-node-externals": "^1.6.3",
+    "@types/yargs": "^11.1.1",
+    "del-cli": "^1.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.14.0",
+    "ts-loader": "^4.4.2",
+    "ts-node": "^7.0.0",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
