@@ -4,37 +4,31 @@ import * as NodeExternals from 'webpack-node-externals';
 
 export default ['bin', 'index'].map(name => {
   return {
-    target: 'node',
+    entry: {
+      [name]: resolve(__dirname, 'src', name),
+    },
     externals: [NodeExternals()],
+    module: {
+      rules: [{ test: /\.ts$/, exclude: /node_modules/, use: 'ts-loader' }],
+    },
     node: {
       __dirname: false,
       __filename: false,
     },
-    entry: {
-      [name]: resolve(__dirname, 'src', name),
-    },
     output: {
       filename: '[name].js',
       path: resolve(__dirname),
-      ...(name == 'index'
+      ...(name === 'index'
         ? { library: 'reexporter', libraryTarget: 'commonjs2' }
         : {}),
     },
-    module: {
-      rules: [
-        {
-          test: /\.ts$/,
-          exclude: /node_modules/,
-          use: 'ts-loader',
-        },
-      ],
-    },
+    plugins:
+      name === 'bin'
+        ? [new BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })]
+        : [],
     resolve: {
       extensions: ['.ts', '.js'],
     },
-    plugins:
-      name == 'bin'
-        ? [new BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })]
-        : [],
+    target: 'node',
   } as Configuration;
 });
