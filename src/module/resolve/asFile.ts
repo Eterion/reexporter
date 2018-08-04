@@ -36,7 +36,7 @@ function ignoreList({
     ...(ignore
       ? ignore.map(name => {
           return new RegExp(
-            typeof name == 'string' && /^\//.test(name) && /\/$/.test(name)
+            typeof name === 'string' && /^\//.test(name) && /\/$/.test(name)
               ? name.substring(1, name.length - 1)
               : `^${name}\.${moduleExtension}$`
           );
