@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Manage index files for ES6 modules and other exports.",
   "keyword": [
-    "autogenerate",
+    "auto",
     "es6",
     "esm",
     "export",
+    "generate",
     "import",
     "index",
     "module"
