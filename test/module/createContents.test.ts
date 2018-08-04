@@ -1,13 +1,6 @@
 import { expect } from 'chai';
-import { comments, eol } from 'const';
+import { comments, eol, options } from 'const';
 import createContents from 'module/createContents';
-import { Options } from 'types';
-
-const options: Options = {
-  moduleTemplate: "export { default as #name } from '#path';",
-  recursionTemplate: "import * as #name from '#path';",
-  recursionTemplateExport: 'export { #recursion };',
-};
 
 describe('createContents()', () => {
   it('returns content from module', () => {
