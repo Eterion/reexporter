@@ -23,11 +23,12 @@
     "index.js"
   ],
   "scripts": {
-    "build": "webpack --mode development",
+    "build": "webpack -r tsconfig-paths/register --mode development",
     "clean": "del-cli \"bin.js\" \"index.js\"",
     "prepack": "yarn release",
     "prettier": "prettier --write \"**/*.{ts,md}\"",
-    "release": "webpack --mode production",
+    "release": "webpack -r tsconfig-paths/register --mode production",
+    "test": "mocha \"test/**/*.ts\" -r ts-node/register -r tsconfig-paths/register",
     "tslint": "tslint -p tsconfig.json -t stylish --fix",
     "watch": "yarn build --watch"
   },
@@ -38,17 +39,23 @@
     "yargs": "^12.0.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.4",
     "@types/glob": "^5.0.35",
+    "@types/mocha": "^5.2.5",
     "@types/node": "^10.5.5",
     "@types/webpack": "^4.4.9",
     "@types/webpack-node-externals": "^1.6.3",
     "@types/yargs": "^11.1.1",
+    "chai": "^4.1.2",
     "del-cli": "^1.1.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
+    "mocha": "^5.2.0",
     "prettier": "^1.14.0",
     "ts-loader": "^4.4.2",
     "ts-node": "^7.0.0",
+    "tsconfig-paths": "^3.5.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
     "typescript": "^3.0.1",
