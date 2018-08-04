@@ -5,7 +5,7 @@ interface IData {
 }
 
 /**
- * Returns string template, where `{n}` patterns are replaced with data values.
+ * Returns string template, where `#n` patterns are replaced with data values.
  * Data can be provided either as list of string values (patterns represent
  * index in array), or as data object (patterns represent property keys).
  *
