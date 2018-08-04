@@ -17,7 +17,7 @@ $ yarn add reexporter
 ### fileExtension
 
 - Type: `string`
-- Default: `'js'`
+- Default: `js`
 
 ### fileExtensionInPath
 
@@ -27,7 +27,7 @@ $ yarn add reexporter
 ### fileName
 
 - Type: `string`
-- Default: `'index'`
+- Default: `index`
 
 ### fileNameInPath
 
@@ -47,7 +47,7 @@ $ yarn add reexporter
 ### moduleExtension
 
 - Type: `string`
-- Default: `'js'`
+- Default: `js`
 
 ### moduleExtensionInPath
 
@@ -57,7 +57,7 @@ $ yarn add reexporter
 ### moduleTemplate
 
 - Type: `string`
-- Default: `'export { default as #name } from '#path';'`
+- Default: `export { default as #name } from '#path';`
 
 ### recursion
 
@@ -67,7 +67,7 @@ $ yarn add reexporter
 ### recursionTemplate
 
 - Type: `string`
-- Default: `'import * as #name from '#path';'`
+- Default: `import * as #name from '#path';`
 
 ### recursionTemplateExport
 
