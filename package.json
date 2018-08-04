@@ -28,7 +28,7 @@
     "prepack": "yarn release",
     "prettier": "prettier --write \"**/*.{ts,md}\"",
     "release": "webpack -r tsconfig-paths/register --mode production",
-    "test": "mocha \"test/**/*.ts\" -r ts-node/register -r tsconfig-paths/register",
+    "test": "mocha \"test/**/*.{test,spec}.ts\" -r ts-node/register -r tsconfig-paths/register",
     "tslint": "tslint -p tsconfig.json -t stylish --fix",
     "watch": "yarn build --watch"
   },
