@@ -15,7 +15,7 @@ describe('getName()', () => {
     expect(getName('index.file')).to.eq(moduleName);
   });
 
-  it('returns module name trimmed from start and end', () => {
+  it('returns module name trimmed on beginning and end', () => {
     expect(getName('-indexFile-')).to.eq(moduleName);
   });
 });
