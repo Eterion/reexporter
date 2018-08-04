@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 import { BannerPlugin, Configuration } from 'webpack';
 import * as NodeExternals from 'webpack-node-externals';
 
@@ -28,6 +29,7 @@ export default ['bin', 'index'].map(name => {
         : [],
     resolve: {
       extensions: ['.ts', '.js'],
+      plugins: [new TsconfigPathsPlugin()],
     },
     target: 'node',
   } as Configuration;
