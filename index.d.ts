@@ -1,5 +1,5 @@
 interface Callback extends Fs {
-  content: string;
+  contents: string;
   modules: Module[];
 }
 
@@ -31,6 +31,6 @@ interface Options {
 }
 
 export default function(
-  paths?: string | string[],
+  patterns?: string | string[],
   options?: Options
 ): Promise<Callback[]>;
