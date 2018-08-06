@@ -4,7 +4,7 @@ import { Module, Options } from 'types';
 
 /**
  * Returns computed file path for index file.
- * @param {object} options Options
+ * @param {object} options Options.
  */
 
 function computeFilePath({
