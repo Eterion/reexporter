@@ -1,5 +1,4 @@
 import { access, unlink } from 'fs';
-import idle from 'module/fs/idle';
 import { Fs, Options } from 'types';
 
 /**
@@ -17,8 +16,9 @@ export default function(path: string, { log, test }: Options): Promise<Fs> {
     }
     access(path, err => {
       if (err) {
-        if (err.code === 'ENOENT') resolve(idle(path, { log }));
-        reject(err);
+        if (err.code !== 'ENOENT') {
+          reject(err);
+        }
       } else {
         test
           ? doResolve()
