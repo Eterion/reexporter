@@ -9,19 +9,18 @@ import update from 'module/fs/update';
 import asDirectory from 'module/resolve/asDirectory';
 import asFile from 'module/resolve/asFile';
 import { dirname, join, resolve } from 'path';
-import { Callback, Module, Options } from 'types';
+import { Module, Options } from 'types';
 import hasProperty from 'utils/hasProperty';
 
-export default async function(
-  patterns?: string | string[],
-  options?: Options
-): Promise<Callback[]> {
+export default function(patterns?: string | string[], options?: Options): void {
   const opt = Object.assign({}, optionsDefaults, options);
   const files = glob.sync(
     patterns
       ? typeof patterns === 'string'
         ? patterns
-        : `{${patterns.join(',')}}`
+        : patterns.length > 1
+          ? `{${patterns.join(',')}}`
+          : patterns[0]
       : join(__dirname, '**/*'),
     { ignore: '**/node_modules/**/*' }
   );
@@ -57,49 +56,33 @@ export default async function(
       }
     });
   }
-  const promises: Array<Promise<Callback>> = [];
+  const data: Array<{
+    contents: string;
+    index: string;
+    modules: Module[];
+  }> = [];
   Object.keys(dirs).forEach(dir => {
-    promises.push(
-      new Promise((success, fail) => {
-        const modules = dirs[dir];
-        const contents = createContents(modules, opt);
-        const file = `${opt.fileName}.${opt.fileExtension}`;
-        const index = join(resolve(__dirname), dir, file);
-        if (modules.length) {
-          access(index, R_OK, err => {
-            if (err) {
-              if (err.code === 'ENOENT') {
-                add(index, contents, opt)
-                  .then(data => {
-                    success({ ...data, contents, modules });
-                  })
-                  .catch(err => {
-                    fail(err);
-                  });
-              } else {
-                fail(err);
-              }
-            } else {
-              update(index, contents, opt)
-                .then(data => {
-                  success({ ...data, contents, modules });
-                })
-                .catch(err => {
-                  fail(err);
-                });
-            }
-          });
-        } else {
-          remove(index, opt)
-            .then(data => {
-              success({ ...data, contents, modules });
-            })
-            .catch(err => {
-              fail(err);
-            });
-        }
-      })
-    );
+    const modules = dirs[dir];
+    const contents = createContents(modules, opt);
+    const file = `${opt.fileName}.${opt.fileExtension}`;
+    const index = join(resolve(__dirname), dir, file);
+    data.push({ contents, index, modules });
   });
-  return Promise.all(promises);
+  data.forEach(({ contents, index, modules }) => {
+    if (modules.length) {
+      access(index, R_OK, err => {
+        if (err) {
+          if (err.code === 'ENOENT') {
+            add(index, contents, opt);
+          } else {
+            console.error(err);
+          }
+        } else {
+          update(index, contents, opt);
+        }
+      });
+    } else {
+      remove(index, opt);
+    }
+  });
 }

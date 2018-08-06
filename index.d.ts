@@ -1,8 +1,3 @@
-interface Callback extends Fs {
-  contents: string;
-  modules: Module[];
-}
-
 interface Fs {
   action: 'add' | 'idle' | 'update' | 'remove';
   message: string;
@@ -30,7 +25,4 @@ interface Options {
   test?: boolean;
 }
 
-export default function(
-  patterns?: string | string[],
-  options?: Options
-): Promise<Callback[]>;
+export default function(patterns?: string | string[], options?: Options): void;
