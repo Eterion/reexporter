@@ -5,14 +5,14 @@
 # Reexporter
 
 A package that simply generates index file with ES6 default exports based on
-detected file structure. Support custom templates for export code, so this
+detected file structure. Supports custom templates for export code, so this
 package can be used to summarize basically anything you want, if you provide
 correct template.
 
 Intall with your favorite package manager with access to npm registry.
 
 ```
-$ yarn add reexporter
+$ yarn add reexporter --dev
 ```
 
 ## Contents
@@ -124,14 +124,14 @@ Enables recursion.
 - Type: `string`
 - Default: `import * as #name from '#path';`
 
-Template for recursion import.
+Template for recursion import, added to the beginning of file.
 
 ### recursionTemplateExport
 
 - Type: `string`
 - Default: `export { #recursion };`
 
-Template for recursion export.
+Template for recursion export, added to the end of file.
 
 ### test
 
