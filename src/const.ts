@@ -7,7 +7,6 @@ export const comments: string = [].map(comment => comment + eol).join('');
 
 export const params: { [key: string]: Params } = {
   fileExtension: {
-    alias: 'e',
     default: 'js',
     type: 'string',
   },
@@ -16,7 +15,6 @@ export const params: { [key: string]: Params } = {
     type: 'boolean',
   },
   fileName: {
-    alias: 'n',
     default: 'index',
     type: 'string',
   },
@@ -25,7 +23,6 @@ export const params: { [key: string]: Params } = {
     type: 'boolean',
   },
   ignore: {
-    alias: 'i',
     default: [],
     type: 'array',
   },
@@ -46,7 +43,6 @@ export const params: { [key: string]: Params } = {
     type: 'string',
   },
   recursion: {
-    alias: 'r',
     default: false,
     type: 'boolean',
   },
@@ -59,7 +55,6 @@ export const params: { [key: string]: Params } = {
     type: 'string',
   },
   test: {
-    alias: 't',
     default: false,
     type: 'boolean',
   },
