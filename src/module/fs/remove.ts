@@ -11,7 +11,8 @@ export default function(path: string, { log, test }: Options): Promise<Fs> {
   return new Promise((resolve, reject) => {
     function doResolve() {
       const message = `Removed: "${path}"`;
-      if (log) console.log(`\x1b[31m> ${message}\x1b[0m`);
+      const isTest = test ? ' (test)' : '';
+      if (log) console.log(`\x1b[31m> ${message}${isTest}\x1b[0m`);
       resolve({ action: 'remove', message });
     }
     access(path, err => {

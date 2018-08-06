@@ -8,6 +8,7 @@ import { Fs, Options } from 'types';
 
 export default function(path: string, { log }: Options): Fs {
   const message = `No changes: "${path}"`;
-  if (log) console.log(message);
+  const isTest = test ? ' (test)' : '';
+  if (log) console.log(`${message}${isTest}`);
   return { action: 'idle', message };
 }

@@ -41,7 +41,8 @@ export default function(
   return new Promise((resolve, reject) => {
     function doResolve() {
       const message = `Updated: "${path}"`;
-      if (log) console.log(`\x1b[33m> ${message}\x1b[0m`);
+      const isTest = test ? ' (test)' : '';
+      if (log) console.log(`\x1b[33m> ${message}${isTest}\x1b[0m`);
       resolve({ action: 'update', message });
     }
     readFile(path, 'utf8', (err, data) => {

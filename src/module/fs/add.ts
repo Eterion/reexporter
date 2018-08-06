@@ -16,7 +16,8 @@ export default function(
   return new Promise((resolve, reject) => {
     function doResolve() {
       const message = `Created: "${path}"`;
-      if (log) console.log(`\x1b[32m> ${message}\x1b[0m`);
+      const isTest = test ? ' (test)' : '';
+      if (log) console.log(`\x1b[32m> ${message}${isTest}\x1b[0m`);
       resolve({ action: 'add', message });
     }
     test
