@@ -7,11 +7,11 @@ describe('asDirectory()', () => {
   it('resolves module as directory', () => {
     expect(
       asDirectory(
-        'modules',
+        'path/modules',
         [
           {
-            name: 'module',
-            path: './module',
+            name: 'modules',
+            path: './modules',
           },
         ],
         options
@@ -24,6 +24,6 @@ describe('asDirectory()', () => {
   });
 
   it('resolves module as directory with no child modules', () => {
-    expect(asDirectory('modules', [], options)).to.deep.eq(null);
+    expect(asDirectory('path/modules', [], options)).to.deep.eq(null);
   });
 });
