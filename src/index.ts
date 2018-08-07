@@ -15,13 +15,16 @@ import hasProperty from 'utils/hasProperty';
 export default function(patterns?: string | string[], options?: Options): void {
   const opt = Object.assign({}, optionsDefaults, options);
   const files = glob.sync(
-    patterns
-      ? typeof patterns === 'string'
-        ? patterns
-        : patterns.length > 1
-          ? `{${patterns.join(',')}}`
-          : patterns[0]
-      : join(__dirname, '**/*'),
+    resolve(
+      process.cwd(),
+      patterns
+        ? typeof patterns === 'string'
+          ? patterns
+          : patterns.length > 1
+            ? `{${patterns.join(',')}}`
+            : patterns[0]
+        : '**/*'
+    ),
     { ignore: '**/node_modules/**/*' }
   );
   const dirs: { [key: string]: Module[] } = files
@@ -65,7 +68,7 @@ export default function(patterns?: string | string[], options?: Options): void {
     const modules = dirs[dir];
     const contents = createContents(modules, opt);
     const file = `${opt.fileName}.${opt.fileExtension}`;
-    const index = join(resolve(__dirname), dir, file);
+    const index = join(resolve(process.cwd()), dir, file);
     data.push({ contents, index, modules });
   });
   data.forEach(({ contents, index, modules }) => {
