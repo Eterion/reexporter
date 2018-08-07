@@ -1,6 +1,6 @@
 {
   "name": "reexporter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage index files for ES6 modules and other exports.",
   "keyword": [
     "auto",
