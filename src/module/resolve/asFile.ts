@@ -48,6 +48,18 @@ function ignoreList({
 }
 
 /**
+ * Returns file extension based on options.
+ * @param {object} options Options.
+ */
+
+function computeModuleExtension({
+  moduleExtension,
+  moduleExtensionInPath,
+}: Options): string {
+  return moduleExtensionInPath ? '.' + moduleExtension : '';
+}
+
+/**
  * Returns module resolved as file.
  * @param {string} file Module path.
  * @param {object} options Options.
@@ -55,9 +67,9 @@ function ignoreList({
 
 export default function(file: string, options: Options): Module | null {
   if (isIgnored(file, ignoreList(options), options)) return null;
-  const pathName = basename(file, '.' + options.moduleExtension);
+  const fileName = basename(file, '.' + options.moduleExtension);
   return {
-    name: getName(pathName),
-    path: `./${options.moduleExtensionInPath ? file : pathName}`,
+    name: getName(fileName),
+    path: `./${fileName}${computeModuleExtension(options)}`,
   };
 }
