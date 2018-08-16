@@ -22,6 +22,7 @@ interface Options {
   recursion?: boolean;
   recursionTemplate?: string;
   recursionTemplateExport?: string;
+  sort?: 'alpha' | 'alpha-desc';
   test?: boolean;
 }
 
