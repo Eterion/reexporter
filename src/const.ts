@@ -54,6 +54,11 @@ export const params: { [key: string]: Params } = {
     default: 'export { #recursion };',
     type: 'string',
   },
+  sort: {
+    choices: ['alpha', 'alpha-desc'],
+    default: 'alpha',
+    type: 'string',
+  },
   test: {
     default: false,
     type: 'boolean',

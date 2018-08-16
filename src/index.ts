@@ -8,6 +8,7 @@ import remove from 'module/fs/remove';
 import update from 'module/fs/update';
 import asDirectory from 'module/resolve/asDirectory';
 import asFile from 'module/resolve/asFile';
+import sort from 'module/sort';
 import { dirname, join, resolve } from 'path';
 import { Module, Options } from 'types';
 import hasProperty from 'utils/hasProperty';
@@ -42,17 +43,7 @@ export default function(patterns?: string | string[], options?: Options): void {
     Object.keys(dirs).forEach(dir => {
       if (hasProperty(dirs, dirname(dir))) {
         const module = asDirectory(dir, dirs[dir], opt);
-        if (module) {
-          dirs[dirname(dir)] = dirs[dirname(dir)]
-            .concat(module)
-            .sort((a, b) => {
-              if (a.isRecursion) return -1;
-              if (b.isRecursion) return 1;
-              if (a.name < b.name) return -1;
-              if (a.name > b.name) return 1;
-              return 0;
-            });
-        }
+        if (module) dirs[dirname(dir)] = dirs[dirname(dir)].concat(module);
       }
     });
   }
@@ -62,7 +53,7 @@ export default function(patterns?: string | string[], options?: Options): void {
     modules: Module[];
   }> = [];
   Object.keys(dirs).forEach(dir => {
-    const modules = dirs[dir];
+    const modules = sort(dirs[dir], opt);
     const contents = createContents(modules, opt);
     const file = `${opt.fileName}.${opt.fileExtension}`;
     const index = join(resolve(process.cwd()), dir, file);

@@ -133,6 +133,13 @@ Template for recursion import, added to the beginning of file.
 
 Template for recursion export, added to the end of file.
 
+### sort
+
+- Type: `alpha | alpha-desc`
+- Default: `alpha`
+
+Determines sorting of exported modules.
+
 ### test
 
 - Type: `boolean`
