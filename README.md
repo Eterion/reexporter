@@ -62,6 +62,10 @@ Custom templates can be used to determine generated file contents. Placeholders
 
 These options are identical for both, node api and cli.
 
+```bash
+reexporter --help
+```
+
 - [fileExtension](#fileextension)
 - [fileExtensionInPath](#fileextensioninpath)
 - [fileName](#filename)
@@ -80,6 +84,7 @@ These options are identical for both, node api and cli.
 
 - Type: `string`
 - Default: `js`
+- Alias: `e`
 
 Determines file extension of the generated index file.
 
@@ -95,6 +100,7 @@ is relevant only when [recursion](#recursion) is enabled.
 
 - Type: `string`
 - Default: `index`
+- Alias: `n`
 
 File name of generated index file.
 
@@ -110,6 +116,7 @@ relevant only when [recursion](#recursion) is enabled.
 
 - Type: `(string | RegExp)[]`
 - Default: `[]`
+- Alias: `i`
 
 List of ignored file names. Strings that start and end with forward slash are
 interpreted as regular expressions. Regular expressions are tested on file
@@ -119,6 +126,7 @@ names, including file extension.
 
 - Type: `boolean`
 - Default: `false`
+- Alias: `l`
 
 Outputs log messages when files are manipulated.
 
@@ -126,6 +134,7 @@ Outputs log messages when files are manipulated.
 
 - Type: `string`
 - Default: `js`
+- Alias: `me`
 
 File extension of modules that should be detected.
 
@@ -140,6 +149,7 @@ If set to true, adds file extension to module paths.
 
 - Type: `string`
 - Default: `export { default as #name } from '#path';`
+- Alias: `mt`
 
 Template for detected module.
 
@@ -147,13 +157,16 @@ Template for detected module.
 
 - Type: `boolean`
 - Default: `false`
+- Alias: `r`
 
-Enables recursion.
+Enables recursion. This means child directories with detected modules will be
+added to index files as well.
 
 ### recursionTemplate
 
 - Type: `string`
 - Default: `import * as #name from '#path';`
+- Alias: `rt`
 
 Template for recursion import, added to the beginning of file.
 
@@ -161,6 +174,7 @@ Template for recursion import, added to the beginning of file.
 
 - Type: `string`
 - Default: `export { #recursion };`
+- Alias: `rte`
 
 Template for recursion export, added to the end of file.
 
@@ -168,6 +182,7 @@ Template for recursion export, added to the end of file.
 
 - Type: `alpha | alpha-desc`
 - Default: `alpha`
+- Alias: `s`
 
 Determines sorting of exported modules.
 
