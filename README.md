@@ -75,14 +75,14 @@ File name of generated index file.
 If set to true, file name will be added to path of index file. This option is
 relevant only when [recursion](#recursion) is enabled.
 
-### ignore (experimental)
+### ignore
 
 - Type: `(string | RegExp)[]`
 - Default: `[]`
 
 List of ignored file names. Strings that start and end with forward slash are
-interpreted as regular expressions. **This options is experimental, probably
-doesn't work properly.**
+interpreted as regular expressions. Regular expressions are tested on file
+names, including file extension.
 
 ### log
 

@@ -15,9 +15,13 @@ function isIgnored(
   { moduleExtension }: Options
 ): boolean {
   return regexp
-    .map(
-      re => !new RegExp(`\\.${moduleExtension}$`).test(file) || re.test(file)
-    )
+    .map(re => {
+      const fileName = basename(file);
+      return (
+        !new RegExp(`\\.${moduleExtension}$`).test(fileName) ||
+        re.test(fileName)
+      );
+    })
     .includes(true);
 }
 
@@ -34,7 +38,7 @@ function ignoreList({
 }: Options): RegExp[] {
   return [
     new RegExp(`\\.(?:d|spec|test)\\.${moduleExtension}$`),
-    new RegExp(`\\/?${fileName}\\.${fileExtension}$`),
+    new RegExp(`^${fileName}\\.${fileExtension}$`),
     ...(ignore
       ? ignore.map(name => {
           return new RegExp(
