@@ -51,6 +51,7 @@ reexporter <node-glob> [options]
 Custom templates can be used to determine generated file contents. Placeholders
 `#n` are used for replacement values.
 
+- `#eol` - End of line shortcut (available in [pragma](#pragma))
 - `#name` - Module name, resolved from file name (available in
   [moduleTemplate](#moduletemplate), [recursionTemplate](#recursiontemplate))
 - `#path` - Path to module (available in [moduleTemplate](#moduletemplate),
@@ -75,6 +76,7 @@ reexporter --help
 - [moduleExtension](#moduleextension)
 - [moduleExtensionInPath](#moduleextensioninpath)
 - [moduleTemplate](#moduletemplate)
+- [pragma](#pragma)
 - [recursion](#recursion)
 - [recursionTemplate](#recursionTemplate)
 - [sort](#sort)
@@ -115,7 +117,6 @@ relevant only when [recursion](#recursion) is enabled.
 ### ignore
 
 - Type: `(string | RegExp)[]`
-- Default: `[]`
 - Alias: `i`
 
 List of ignored file names. Strings that start and end with forward slash are
@@ -152,6 +153,15 @@ If set to true, adds file extension to module paths.
 - Alias: `mt`
 
 Template for detected module.
+
+### pragma
+
+- Type: `string[]`
+- Alias: `p`
+
+Adds any kind of string at the start of index file. Each item in array will be
+included on separate line. Use `#eol` placeholder to manually include end of
+line.
 
 ### recursion
 

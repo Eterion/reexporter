@@ -19,6 +19,7 @@ interface Options {
   moduleExtension?: string;
   moduleExtensionInPath?: boolean;
   moduleTemplate?: string;
+  pragma?: string[];
   recursion?: boolean;
   recursionTemplate?: string;
   recursionTemplateExport?: string;
