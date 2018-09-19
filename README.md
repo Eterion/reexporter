@@ -42,8 +42,8 @@ reexporter(<node-glob>[, options]);
 
 Provides the same functionality as node api.
 
-```
-$ reexporter <node-glob> [options]
+```bash
+reexporter <node-glob> [options]
 ```
 
 ## Templates
