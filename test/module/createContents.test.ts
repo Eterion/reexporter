@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { comments, eol, options } from 'const';
+import { eol, options } from 'const';
 import createContents from 'module/createContents';
 
 describe('createContents()', () => {
@@ -15,9 +15,9 @@ describe('createContents()', () => {
         options
       )
     ).to.eq(
-      `${comments}${[
-        "export { default as moduleName } from './module-name';",
-      ].join(eol)}${eol}`
+      `${["export { default as moduleName } from './module-name';"].join(
+        eol
+      )}${eol}`
     );
   });
 
@@ -37,7 +37,7 @@ describe('createContents()', () => {
         options
       )
     ).to.eq(
-      `${comments}${[
+      `${[
         "export { default as firstModule } from './first-module';",
         "export { default as secondModule } from './second-module';",
       ].join(eol)}${eol}`
@@ -57,7 +57,7 @@ describe('createContents()', () => {
         options
       )
     ).to.eq(
-      `${comments}${[
+      `${[
         "import * as moduleName from './module-name';",
         'export { moduleName };',
       ].join(eol)}${eol}`
@@ -82,7 +82,7 @@ describe('createContents()', () => {
         options
       )
     ).to.eq(
-      `${comments}${[
+      `${[
         "import * as firstModule from './first-module';",
         "import * as secondModule from './second-module';",
         'export { firstModule, secondModule };',

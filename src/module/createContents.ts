@@ -1,4 +1,4 @@
-import { comments, eol } from 'const';
+import { eol } from 'const';
 import { Module, Options } from 'types';
 import interpolate from 'utils/interpolate';
 
@@ -10,12 +10,17 @@ import interpolate from 'utils/interpolate';
 
 export default function(
   modules: Module[],
-  { moduleTemplate, recursionTemplate, recursionTemplateExport }: Options
+  {
+    moduleTemplate,
+    recursionTemplate,
+    pragma,
+    recursionTemplateExport,
+  }: Options
 ): string {
   let contents = modules.reduce((str, module) => {
     const useTemplate = module.isRecursion ? recursionTemplate : moduleTemplate;
     return useTemplate ? str + interpolate(useTemplate, module) + eol : '';
-  }, comments);
+  }, pragma ? (pragma || []).map(str => interpolate(str, { eol }) + eol).join('') : '');
   const dirs = modules.filter(module => module.isRecursion);
   if (dirs.length) {
     if (recursionTemplateExport) {

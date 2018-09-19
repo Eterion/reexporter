@@ -3,8 +3,6 @@ import { Options as Params } from 'yargs';
 
 export const eol: string = '\r\n';
 
-export const comments: string = [].map(comment => comment + eol).join('');
-
 export const params: { [key: string]: Params } = {
   fileExtension: {
     alias: 'e',
@@ -59,6 +57,13 @@ export const params: { [key: string]: Params } = {
     default: "export { default as #name } from '#path';",
     desc: 'Template for detected module.',
     type: 'string',
+  },
+  pragma: {
+    alias: 'p',
+    default: [],
+    desc:
+      'Adds any kind of string at the start of index file. Each item in array will be included on separate line. Use #eol placeholder to manually include end of line.',
+    type: 'array',
   },
   recursion: {
     alias: 'r',
