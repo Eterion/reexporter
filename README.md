@@ -25,6 +25,7 @@ yarn add reexporter --dev
 - [CLI](#cli)
 - [Templates](#templates)
 - [Options](#options)
+- [Example](#example)
 
 ## Node Api
 
@@ -176,3 +177,49 @@ Determines sorting of exported modules.
 - Default: `false`
 
 Enables test mode, which doesn't manipulate any files.
+
+## Example
+
+Given the following file structure:
+
+```
+.
+├─ modules
+|   ├─ moduleA
+|   |   └─ a.js
+|   ├─ moduleB
+|   |   └─ b.js
+|   ├─ bar.js
+|   ├─ baz.js
+|   └─ foo.js
+├─ package.json
+└─ ...
+```
+
+Running the following cli command:
+
+```bash
+reexporter modules/**/* --recursion
+```
+
+Will generate index files with the following contents:
+
+```js
+// modules/moduleA/index.js
+export { default as a } from './a';
+```
+
+```js
+// modules/moduleB/index.js
+export { default as b } from './b';
+```
+
+```js
+// modules/index.js
+import * as moduleA from './moduleA';
+import * as moduleB from './moduleB';
+export { default as bar } from './bar';
+export { default as baz } from './baz';
+export { default as foo } from './foo';
+export { moduleA, moduleB };
+```
