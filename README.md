@@ -11,16 +11,20 @@ correct template.
 
 Intall with your favorite package manager with access to npm registry.
 
-```
-$ yarn add reexporter --dev
+```bash
+# npm
+npm install reexporter --save-dev
+
+# yarn
+yarn add reexporter --dev
 ```
 
 ## Contents
 
 - [Node Api](#node-api)
 - [CLI](#cli)
-- [Options](#options)
 - [Templates](#templates)
+- [Options](#options)
 
 ## Node Api
 
@@ -40,6 +44,18 @@ Provides the same functionality as node api.
 ```
 $ reexporter <node-glob> [options]
 ```
+
+## Templates
+
+Custom templates can be used to determine generated file contents. Placeholders
+`#n` are used for replacement values.
+
+- `#name` - Module name, resolved from file name (available in
+  [moduleTemplate](#moduletemplate), [recursionTemplate](#recursiontemplate))
+- `#path` - Path to module (available in [moduleTemplate](#moduletemplate),
+  [recursionTemplate](#recursiontemplate))
+- `#recursion` - List of modules, separated by comma (available in
+  [recursionTemplateExport](#recursiontemplateexport))
 
 ## Options
 
@@ -160,24 +176,3 @@ Determines sorting of exported modules.
 - Default: `false`
 
 Enables test mode, which doesn't manipulate any files.
-
-## Templates
-
-Custom templates can be used to modify generated file contents. There's a total
-of three available templates.
-
-### Placeholders
-
-| Placeholder  | Description                         |
-| ------------ | ----------------------------------- |
-| `#name`      | Module name, resolved from path.    |
-| `#path`      | Path to module.                     |
-| `#recursion` | List of modules separated by comma. |
-
-### Availability
-
-| Template                  | Available Placeholders |
-| ------------------------- | ---------------------- |
-| `moduleTemplate`          | `#name`, `#path`       |
-| `recursionTemplate`       | `#name`, `#path`       |
-| `recursionTemplateExport` | `#recursion`           |
