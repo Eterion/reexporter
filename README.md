@@ -45,6 +45,20 @@ $ reexporter <node-glob> [options]
 
 These options are identical for both, node api and cli.
 
+- [fileExtension](#fileextension)
+- [fileExtensionInPath](#fileextensioninpath)
+- [fileName](#filename)
+- [fileNameInPath](#filenameinpath)
+- [ignore](#ignore)
+- [log](#log)
+- [moduleExtension](#moduleextension)
+- [moduleExtensionInPath](#moduleextensioninpath)
+- [moduleTemplate](#moduletemplate)
+- [recursion](#recursion)
+- [recursionTemplate](#recursionTemplate)
+- [sort](#sort)
+- [test](#test)
+
 ### fileExtension
 
 - Type: `string`
